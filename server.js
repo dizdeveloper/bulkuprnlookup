@@ -42,7 +42,7 @@ router.route( '/uprns' ).post( function ( request, response ) {
     if (!request.body.hasOwnProperty('UPRNS')){
         response.setHeader( 'content-type', 'application/text' );
         console.log('not an array' );
-        response.send( 'Did not find an array called UPRNS. Send something like this { UPRNS ["3345454","34354546"] }' );
+        response.send( 'Did not find an array called UPRNS. Send something like this { "UPRNS": ["100021019205", "100021019206"]}');
     }
    
     
