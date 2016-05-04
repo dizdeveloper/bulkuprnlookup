@@ -36,14 +36,14 @@ router.get('/', function(req, res) {
 
 router.route( '/uprns' ).post( function ( request, response ) {
     response.setHeader( 'content-type', 'application/text' );
-    console.log( 'first element from the array is ' + request.body.UPRNS[ 0 ] ); // your  1st element in  JSON array.
+    //console.log( 'first element from the array is ' + request.body.UPRNS[ 0 ] ); // your  1st element in  JSON array.
 
-    console.log( 'Number of items in array is ' + request.body.UPRNS.length );
+    //console.log( 'Number of items in array is ' + request.body.UPRNS.length );
     
-    //If UPRN array is empty and has no values
+    //If UPRN array is empty and has no values OR has more than 100 entries 
     
-    if (request.body.UPRNS.length == 0) {
-         response.send( 'no UPRNS in request' );
+    if (request.body.UPRNS.length == 0 || request.body.UPRNS.length > 100 ) {
+         response.send( 'Number of UPRNS in request body must be between 1 and 100' );
     }
     
     var output = [];
@@ -96,7 +96,7 @@ router.route( '/uprns' ).post( function ( request, response ) {
                 // There is a bug here that if request.body.UPRNS.length
                 // is zero, then the user will never get a response.  I 
                 // let you fix this up :).
-                 console.log( output );
+                 //console.log( output );
                 response.send( output );
             }
         } );
