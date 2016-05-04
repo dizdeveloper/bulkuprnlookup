@@ -35,7 +35,17 @@ router.get('/', function(req, res) {
 // more routes for our API will happen here
 
 router.route( '/uprns' ).post( function ( request, response ) {
-    response.setHeader( 'content-type', 'application/text' );
+    response.setHeader( 'content-type', 'application/json' );
+    
+   //Check if the body of the request has an key called UPRNS 
+  
+    if (!request.body.hasOwnProperty('UPRNS')){
+        response.setHeader( 'content-type', 'application/text' );
+        console.log('not an array' );
+        response.send( 'Did not find an array called UPRNS. Send something like this { UPRNS ["3345454","34354546"] }' );
+    }
+   
+    
     //console.log( 'first element from the array is ' + request.body.UPRNS[ 0 ] ); // your  1st element in  JSON array.
 
     //console.log( 'Number of items in array is ' + request.body.UPRNS.length );
@@ -43,6 +53,7 @@ router.route( '/uprns' ).post( function ( request, response ) {
     //If UPRN array is empty and has no values OR has more than 100 entries 
     
     if (request.body.UPRNS.length == 0 || request.body.UPRNS.length > 100 ) {
+        response.setHeader( 'content-type', 'application/text' );
          response.send( 'Number of UPRNS in request body must be between 1 and 100' );
     }
     
