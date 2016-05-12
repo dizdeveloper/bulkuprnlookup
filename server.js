@@ -70,9 +70,10 @@ router.route( '/uprns' ).post( function ( request, response ) {
 
         //Make  HTTP calls to
 
-        var options = {
-            host: 'orbisdigital.azure-api.net',
-            path: '/nosecurity/addresses?uprn=' + obj // full URL as path
+       var options = {
+            host: 'address.digitalservices.surreyi.gov.uk',
+            path: '/addresses?uprn=' + obj, // path 
+            headers: {'Authorization': 'Bearer vJiSsulQe-zOobDsAWoUxr9cYfw'} // Authentication header with bearer token
         };
 
         Https.request( options, callback ).end();
