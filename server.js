@@ -59,6 +59,10 @@ router.route( '/uprns' ).post( function ( request, response ) {
          response.send( 'Number of UPRNS in request body must be between 1 and 100' );
     }
     
+     var token = request.headers.authorization.toString();
+    
+    console.log('Token used is :'+token);
+    
     var output = [];
     var obj = '';
 
@@ -73,7 +77,7 @@ router.route( '/uprns' ).post( function ( request, response ) {
        var options = {
             host: 'address.digitalservices.surreyi.gov.uk',
             path: '/addresses?uprn=' + obj, // path 
-            headers: {'Authorization': 'Bearer vJiSsulQe-zOobDsAWoUxr9cYfw'} // Authentication header with bearer token
+            headers: {'Authorization': token} // Authentication header with bearer token
         };
 
         Https.request( options, callback ).end();
