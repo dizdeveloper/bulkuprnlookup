@@ -8,13 +8,14 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var Https = require('https');
+var path = require('path');
 
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use( express.static( __dirname + '/client' ));
 var port = process.env.PORT || 8080;        // set our port
 // ROUTES FOR OUR API
 // =============================================================================
@@ -29,7 +30,8 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.send('A wrapper API at /uprns which accepts a json array with uprn values and outputs an array of results');   
+    //res.send('A wrapper API at /uprns which accepts a json array with uprn values and outputs an array of results');   
+     res.sendfile( path.join( __dirname, 'client', 'index.html' ));  
 });
 
 // more routes for our API will happen here
