@@ -71,7 +71,8 @@ body {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    color:#3d9970;;
+    color:#fff;
+    background-color: #3d9970;
     display: block;
     padding: .6em 3.5em;
     position: fixed;
