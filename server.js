@@ -54,17 +54,18 @@ router.route( '/uprns' ).post( function ( request, response ) {
     
     //If UPRN array is empty and has no values OR has more than 100 entries 
     
-    if (request.body.UPRNS.length == 0 || request.body.UPRNS.length > 100 ) {
+    if (request.body.UPRNS.length === 0 || request.body.UPRNS.length > 100 ) {
         response.setHeader( 'content-type', 'application/text' );
          response.send( 'Number of UPRNS in request body must be between 1 and 100' );
     }
     
      var token = request.headers.authorization.toString();
     
-    console.log('Token used is :'+token);
+    //console.log('Token used is :'+token);
     
     var output = [];
     var obj = '';
+    //Loop through the request array 
 
     for ( var i = 0; i < request.body.UPRNS.length; i++ ) {
 
